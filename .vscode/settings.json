@@ -1,0 +1,25 @@
+{
+  // markdown lint config
+  "markdownlint.config": {
+    "default": true,
+  },
+
+  // autolint md files on save
+  "[markdown]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.markdownlint": "always"
+    }
+  },
+
+  // Use Air as the formatter for R files and enable format-on-save
+  "[r]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "Posit.air-vscode",
+    // run Air's format action only on explicit save (safer than auto-save)
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit"
+    }
+  }
+}

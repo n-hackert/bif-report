@@ -1,0 +1,7 @@
+.DS_store
+# make sure no rogue PDF makes it into vcs by accident
+*.pdf
+
+# rendered figures, static files and source data
+/figures/
+/tables/
