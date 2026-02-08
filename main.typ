@@ -18,7 +18,7 @@ We found that differential splicing upon activation of memory CD4#super[+] T cel
 Transcriptome-wide intron retention and transcript isoform diversity both reduced upon activation.
 // Diversity of transcript isoform expression showed a global reduction upon activation, however, there were groups of genes markedly expanding their isoform diversity upon activation.
 We further developed SNPJunkie, a tool to quantify allelic junction counts from fragments aligned to one or more SNP-junction combinations (events).
-Based on SNPJunkie event quantifications, we found widespread evidence of allele-specific junction usage, occuring in many genes central to T cell function as well as autoimmune disease risk genes.
+Based on SNPJunkie event quantifications, we found widespread evidence of allele-specific junction usage, occurring in many genes central to T cell function as well as autoimmune disease risk genes.
 
 Our work highlights the dynamic nature of alternative splicing during T cell activation and introduces a new computational method allowing fast and unbiased quantification of the effects of genetic variation on exon-exon junction usage on the level of individual samples.
 
@@ -195,7 +195,7 @@ Here, we show that autoimmune disease risk variants can dynamically regulate jun
     *Differential splicing upon T cell activation.*
     *a* Principal Component analysis of samples, including technical replicates, (n=200) based on LeafCutter quantifications.
     *b* Number of significant LeafCutter clusters (left) and number of genes with significant LeafCutter clusters (right) for each differential splicing comparison (n=7) at 5% FDR
-    *c* and *d* Examples of differentially spliced LeafCutter clusters in autoimmune disease risk genes _IL10_ (top) and _LEF1_ (bottom). Left side: Cluster plots from one differential splicing test. All significant $Delta"PSI"$ values throughout the time course are shown on the right of the cluster plot for each leafcutter intron ("a", "b", "c").
+    *c* and *d* Examples of differentially spliced LeafCutter clusters in autoimmune disease risk genes _IL10_ (top) and _LEF1_ (bottom). Left side: Cluster plots from one differential splicing test. All significant $Delta"PSI"$ values throughout the time course are shown on the right of the cluster plot for each LeafCutter intron ("a", "b", "c").
     *e* Types of significant differential splicing events detected by rMATS (SE skipped exon, A5SS alternative 5' splice sites, A3SS alternative 3' splice sites, MXE mutually exclusive exons, RI retained intron).
     *f* Number of significant intron retention (upper half) and excision (lower half) events as classified by rMATS at FDR 10%.
     Differential splicing was tested between time shown on the X-axes and preceding time.  
@@ -320,7 +320,7 @@ ASJU genes were moderately enriched in autoimmune disease risk gene sets, hintin
 === Dynamic changes in event specific allelic imbalance
 
 As described previously, there is a dynamic change in allelic expression at many SNPs in autoimmune disease risk loci upon activation of memory CD4#super[+] T-cells @gutierrez-arcelus2020.
-Having quantified allelic counts not at the level of total allelic counts at a given SNP, but at the level of the combination of each SNP with its co-occuring junctions, we next sought to understand how allelic imbalance changes dynamically upon activation at different SNPJunkie events.
+Having quantified allelic counts not at the level of total allelic counts at a given SNP, but at the level of the combination of each SNP with its co-occurring junctions, we next sought to understand how allelic imbalance changes dynamically upon activation at different SNPJunkie events.
 We thus tested for sites where dynamics in a SNPJunkie event's counts significantly differ from the dynamics of all other counts at that SNP that are not part of the event and thus do not support usage of its junction.
 
 At 5% FDR, there were 270 events with allelic expression dynamics significantly differing from their SNPs overall allelic expression dynamics.
@@ -359,7 +359,7 @@ The pipeline was run using Nextflow @ditommaso2017 v23.04.1 and tasks were run i
 
 ==== LeafCutter intron cluster quantification
 
-We extracted juntions from the aligned reads using regtools @cotto2023 v1.0.0 `junctions exctract` command, requiring the default minimum anchor length of 8 bp, minimum intron size of 70 bp and maximum intron size of 500 000 bp.
+We extracted junctions from the aligned reads using regtools @cotto2023 v1.0.0 `junctions exctract` command, requiring the default minimum anchor length of 8 bp, minimum intron size of 70 bp and maximum intron size of 500 000 bp.
 // Strand information was inferred from the a record's XS tag (`regtools junctions extract -s XS ...`)
 We subsequently clustered junctions with LeafCutter @li2018a using its `leafcutter_cluster_regtools.py` script, requiring at least 50 reads in support of a cluster and permitting introns of lengths up to 500 000 bp.
 
@@ -398,7 +398,7 @@ We calculated the Gini index for each sufficiently expressed gene (see above) th
 
 Following pre-filtering and calculation of number of transcripts expressed per gene ($"ntx"$), we calculated the difference in numbers of transcripts expressed at time $t$ compared to 0h: $Delta"ntx"_t="ntx"_t-"ntx"_"0h"$.
 Based on the median of the $Delta"ntx"$ metric across samples, we clustered highly variable genes ($sigma(Delta"ntx")>1$) using the partitioning around medoids clustering algorithm based on manhattan distances.
-Based on an analysis of silhoulette widths, we set k=5, as it led to a maximized silhoulette score of 0.268.
+Based on an analysis of silhouette widths, we set k=5, as it led to a maximized silhouette score of 0.268.
 
 === SNPJunkie pipeline
 
@@ -445,7 +445,7 @@ Event groups were assigned based on whether events shared their SNP and either a
 Reads' junctions were encoded numerically as integers between $1$ and the total number of events $n$, i.e., different junctions associated with the group's SNP that were part of the event group. 
 
 For each group, we performed an F-test between the following two simple logistic regression models.
-To account for overdispersion, we fit quasibinomial logistic regression models.
+To account for overdispersion, we fit quasi-binomial logistic regression models.
 
 $ H_0: "allele" ~ 1 $
 $ H_1: "allele" ~ "event" $
@@ -459,7 +459,7 @@ We additionally encoded whether a read at the SNP in question was part of the te
 A read's point in time was encoded as a scaled value between $1$ and $8$.
 
 For each event, we first tested whether a read's group (event vs non-event) allows predicting its allelic identity and ran a second, nested model only for events that passed a Bonferroni threshold of $0.05/("n tested events")$.
-We next performed an F-test between the following two quasibinomial logistic regression models, testing for whether a dynamic interaction term between group and time allows predicting the reads' allelic identities.
+We next performed an F-test between the following two quasi-binomial logistic regression models, testing for whether a dynamic interaction term between group and time allows predicting the reads' allelic identities.
 Resulting p-values were corrected for the number of tested events using the FDR correction method.
 
 $ H_0: "allele" ~ "group" + "poly(time, 2)" $
@@ -474,7 +474,7 @@ Enrichment analysis was performed by comparing the observed overlaps of ASJU gen
 == Discussion
 
 Here, we provide an in-depth characterization of alternative splicing and its genetic regulation CD4#super[+] T cell activation.
-We find that alternative splicing is a pervasive mechanism in the T cell transcriptome after activation and that many genes central to T cell function are dynamically affected by differentlial splicing upon cell stimulation.
+We find that alternative splicing is a pervasive mechanism in the T cell transcriptome after activation and that many genes central to T cell function are dynamically affected by differential splicing upon cell stimulation.
 We further show that there is a transcriptome-wide increase in intron excision upon T cell activation and that differential splicing leads to a global reduction in transcript isoform diversity after activation.
 Intron excision in T cell activation has been described previously and it has been hypothesized that it may act as a regulatory mechanism to increase the availability of mature mRNA transcripts and thereby support the coordination of efficient T cell responses @ni2016a.
 
