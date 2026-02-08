@@ -23,7 +23,7 @@
   // layout
   // font settings
   set text(
-    size: 12pt,
+    size: 11pt,
     font: ("arial"),
   )
 
@@ -31,6 +31,7 @@
   set page(
     paper: "a4",
     margin: 1in,
+    numbering: "1",
   )
 
   // paragraph appearance
@@ -74,19 +75,18 @@
   // header block
   block()[
     #align(center)[
-      // TODO: find inspiring font
+      #text(size: 16pt, weight: "bold")[#title]
+
+      #line(length: 100%, stroke: 0.3pt)
+        // TODO: find inspiring font
       #text(font: "Arial")[
         Boehringer Ingelheim Fonds MD fellowship report
+
+        #author, 
+        #date.display("[day].[month].[year]")
       ]
+      #line(length: 100%, stroke: 0.3pt)
     ]
-
-    #text(size: 16pt, weight: "bold")[#title]
-
-    #author
-    #h(1fr)
-    #date.display("[day].[month].[year]")
-    #v(1em)
-    #line(length: 100%)
   ]
 
   // content, including all sections and refs

@@ -1,3 +1,4 @@
+library(scales)
 library(RColorBrewer)
 library(circlize)
 library(ggplot2)
@@ -175,3 +176,21 @@ generate_or_rd_colfun <- function(min = 0, max = 1) {
 
   return(colfun)
 }
+
+neg_log10_trans <- function() {
+  trans_new(
+    "negative_log10",
+    function(x) -log10(x),
+    function(x) 10^(-x),
+    log_breaks(base = 10),
+    domain = c(1e-100, Inf)
+  )
+}
+
+time_scaled_mappings <- tibble(
+  time = factor(
+    x = c("0", "2", "4", "8", "12", "24", "48", "72"),
+    levels = c("0", "2", "4", "8", "12", "24", "48", "72")
+  ),
+  time_scaled = scale(seq_along(time))[, 1]
+)
