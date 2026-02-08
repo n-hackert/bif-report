@@ -24,7 +24,7 @@
   // font settings
   set text(
     size: 11pt,
-    font: ("arial"),
+    font: ("Liberation Sans"),
   )
 
   // page layout
@@ -79,7 +79,7 @@
 
       #line(length: 100%, stroke: 0.3pt)
         // TODO: find inspiring font
-      #text(font: "Arial")[
+      #text(font: "Liberation Sans")[
         Boehringer Ingelheim Fonds MD fellowship report
 
         #author, 
